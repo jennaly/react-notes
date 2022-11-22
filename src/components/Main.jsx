@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactMarkdown from 'react-markdown'
 
 const Main = ({ activeNote, onUpdateNote }) => {
   
@@ -23,7 +24,7 @@ const Main = ({ activeNote, onUpdateNote }) => {
         <div className="app-main-note-preview">
             <h1 className="preview-title">{activeNote && activeNote.title}</h1>
 
-            <div className="markdown-preview">{activeNote && activeNote.body}</div>
+            <ReactMarkdown className="markdown-preview">{activeNote && activeNote.body}</ReactMarkdown>
         </div>
     </div>
   )
