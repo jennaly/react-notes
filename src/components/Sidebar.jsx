@@ -1,23 +1,39 @@
 import React from 'react'
 
-const Sidebar = () => {
+const Sidebar = ({ notes, onAddNote }) => {
   return (
     <div className="app-sidebar">
+
         <div className="app-sidebar-header">
             <h1>Notes</h1>
-            <button>Add</button>
+            <button onClick={ onAddNote }>Add</button>
         </div>
+
         <div className="app-sidebar-notes">
-            <div className="app-sidebar-note">
-                <div className="sidebar-note-title">
-                    <strong>TITLE</strong>
-                    <button>Delete</button>
-                </div>
 
-                <p>Note preview</p>
+            {notes.map(note => {
+                return (
+                    <div className="app-sidebar-note">
+                        <div className="sidebar-note-title">
+                            <strong>{note.title}</strong>
+                            <button>Delete</button>
+                        </div>
 
-                <small className="note-meta">Last modified [date]</small>
-            </div>
+                        {/* only display first 100 characters from the note's body */}
+                        <p>{note.body && note.body.substr(0, 100) + "..."}</p>
+
+                        {/* display date and time  */}
+                        <small className="note-meta">
+                            Last modified{" "}
+                            {new Date(note.lastModified).toLocaleDateString("en-GB", {
+                                hour: "2-digit",
+                                minute: "2-digit",
+                            })} 
+                        </small>
+                    </div>
+                )
+            })}
+           
         </div>
     </div>
   )
