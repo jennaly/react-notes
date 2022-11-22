@@ -1,7 +1,12 @@
 import React from 'react'
 
 const Sidebar = ({ notes, onAddNote, onDeleteNote, activeNote, setActiveNote }) => {
-  return (
+
+    // sort most recently edited note to the top
+    const sortedNotes = notes.sort((a,b) => b.lastModified - a.lastModified)
+
+
+    return (
     <div className="app-sidebar">
 
         <div className="app-sidebar-header">
@@ -11,7 +16,7 @@ const Sidebar = ({ notes, onAddNote, onDeleteNote, activeNote, setActiveNote }) 
 
         <div className="app-sidebar-notes">
 
-            {notes.map(note => {
+            {sortedNotes.map(note => {
                 return (
                     <div className={`app-sidebar-note ${note.id === activeNote && "active"}`} onClick={() => setActiveNote(note.id)}>
                         <div className="sidebar-note-title">
