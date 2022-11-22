@@ -20,13 +20,17 @@ function App() {
 
 
     setNotes([newNote, ...notes]);
-    console.log(notes);
+  }
+
+  const onDeleteNote = (idToDelete) => {
+    const filteredNotes = notes.filter(note => note.id !== idToDelete);
+    setNotes(filteredNotes)
   }
 
 
   return (
     <div className="App">
-      <Sidebar notes={ notes } onAddNote={ addNote }/>
+      <Sidebar notes={ notes } onAddNote={ addNote } onDeleteNote={ onDeleteNote }/>
       <Main notes={ notes }/>
     </div>
   )

@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Sidebar = ({ notes, onAddNote }) => {
+const Sidebar = ({ notes, onAddNote, onDeleteNote }) => {
   return (
     <div className="app-sidebar">
 
@@ -16,7 +16,7 @@ const Sidebar = ({ notes, onAddNote }) => {
                     <div className="app-sidebar-note">
                         <div className="sidebar-note-title">
                             <strong>{note.title}</strong>
-                            <button>Delete</button>
+                            <button onClick={() => onDeleteNote(note.id)}>Delete</button>
                         </div>
 
                         {/* only display first 100 characters from the note's body */}
